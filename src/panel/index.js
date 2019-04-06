@@ -102,7 +102,6 @@ export default class Panel extends Component {
 
 Panel.propTypes = {
   // channel: PropTypes.object.isRequired,
-  storybook: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
   active: PropTypes.bool,
 };
