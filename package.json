@@ -4,16 +4,16 @@
   "description": "Navigate different versions of storybook style guides.",
   "main": "dist/register.js",
   "scripts": {
-    "start": "npm run storybook",
+    "start": "yarn storybook",
     "storybook": "start-storybook -p 9001 -s ./.storybook",
     "build-storybook": "build-storybook",
     "serve-static": "ws -d storybook-static",
     "lint": "eslint src --ext .js",
     "transpile": "babel ./src --out-dir dist --copy-files --ignore __tests__,__mocks__,__snapshots__",
     "test": "jest ./src --coverage",
-    "build": "npm run lint && npm run test && npm run transpile",
-    "prepublish": "npm run transpile",
-    "prepush": "npm run lint && npm test"
+    "build": "yarn lint && yarn test && yarn transpile",
+    "prepublish": "yarn transpile",
+    "prepush": "yarn lint && npm test"
   },
   "repository": {
     "type": "git",
