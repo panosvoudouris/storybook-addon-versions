@@ -1,5 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Panel renders correctly, no versions (dev false) 1`] = `ReactWrapper {}`;
-
-exports[`Panel renders correctly, no versions (dev true) 1`] = `ReactWrapper {}`;

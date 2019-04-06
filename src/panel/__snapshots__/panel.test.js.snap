@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Panel renders correctly, no versions 1`] = `
+<Panel
+  location={
+    Object {
+      "hash": "",
+      "pathname": "/0.2.5/",
+      "search": "",
+    }
+  }
+  storybook={
+    Object {
+      "getQueryParam": [Function],
+      "setQueryParams": [Function],
+    }
+  }
+/>
+`;
+
+exports[`Panel renders versions 1`] = `null`;

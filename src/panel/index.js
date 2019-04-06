@@ -7,17 +7,13 @@ export default class Panel extends Component {
   constructor(...args) {
     super(...args);
 
-    const { storybook } = this.props;
-
     this.state = {
       availableVersions: null,
       currentVersion: '',
       hostname: '',
       localhost: '',
-      showLocalhost: (storybook.getQueryParam('versionsDevMode') === 'true'),
     };
 
-    this.devModeChangeHandler = this.devModeChangeHandler.bind(this);
     this.handleVersionClick = this.handleVersionClick.bind(this);
   }
 
@@ -58,18 +54,6 @@ export default class Panel extends Component {
     });
   }
 
-  devModeChangeHandler() {
-    const newVal = !this.state.showLocalhost; // eslint-disable-line
-    const { storybook } = this.props;
-
-    this.setState({
-      showLocalhost: newVal,
-    });
-    storybook.setQueryParams({
-      versionsDevMode: newVal,
-    });
-  }
-
   handleVersionClick(e) {
     // We need to handle clicks dynamically so we get all the correct query strings
     const { currentVersion, hostname, localhost } = this.state;
@@ -81,7 +65,7 @@ export default class Panel extends Component {
   }
 
   render() {
-    const { availableVersions, currentVersion, showLocalhost } = this.state;
+    const { availableVersions, currentVersion } = this.state;
     const { active } = this.props;
     let versionsList = <p>No versions found</p>;
 
@@ -106,32 +90,10 @@ export default class Panel extends Component {
           </button>
         );
       });
-
-      if (showLocalhost) {
-        versionsList.unshift(
-          <button
-            type="button"
-            key={keyCounter++}
-            onClick={this.handleVersionClick}
-            className="light-bg with-border"
-          >
-            local dev
-          </button>,
-        );
-      }
     }
 
     return active ? (
       <div className="versions-panel-container">
-        <label htmlFor="versionsAddonDevMode">
-          <input
-            type="checkbox"
-            id="versionsAddonDevMode"
-            checked={showLocalhost}
-            onChange={this.devModeChangeHandler}
-          />
-          Developer mode
-        </label>
         <div className="versions-panel-list">{versionsList}</div>
       </div>
     ) : null;

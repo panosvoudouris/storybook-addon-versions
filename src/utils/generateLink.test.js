@@ -1,4 +1,4 @@
-import generateLink from '../generateLink';
+import generateLink from './generateLink';
 
 const location = {
   protocol: 'https:',
