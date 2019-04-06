@@ -2,18 +2,19 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import getConfig from '../utils/config';
 import generateLink from '../utils/generateLink';
-import './styles.css';
 
 export default class Panel extends Component {
   constructor(...args) {
     super(...args);
+
+    const { storybook } = this.props;
 
     this.state = {
       availableVersions: null,
       currentVersion: '',
       hostname: '',
       localhost: '',
-      showLocalhost: (this.props.storybook.getQueryParam('versionsDevMode') === 'true'),
+      showLocalhost: (storybook.getQueryParam('versionsDevMode') === 'true'),
     };
 
     this.devModeChangeHandler = this.devModeChangeHandler.bind(this);
@@ -22,21 +23,28 @@ export default class Panel extends Component {
 
   componentWillMount() {
     getConfig().then((data) => {
-      const { availableVersions, regex, hostname, localhost } = data;
+      const { location } = this.props;
+      const {
+        availableVersions,
+        regex,
+        hostname,
+        localhost,
+      } = data;
+
       if (availableVersions) {
         this.setState({
           availableVersions: availableVersions.reverse(),
         });
       }
 
-      const url = this.props.location;
+      const url = location;
       let currentVersion = '';
       const path = url.pathname;
       if (path && path !== '/' && regex) {
         const r = new RegExp(regex, 'i');
         const result = r.exec(path);
         if (result && result.length > 0) {
-          currentVersion = result[1];
+          currentVersion = result[1]; // eslint-disable-line
         }
       }
 
@@ -51,12 +59,13 @@ export default class Panel extends Component {
   }
 
   devModeChangeHandler() {
-    const newVal = !this.state.showLocalhost;
+    const newVal = !this.state.showLocalhost; // eslint-disable-line
+    const { storybook } = this.props;
 
     this.setState({
       showLocalhost: newVal,
     });
-    this.props.storybook.setQueryParams({
+    storybook.setQueryParams({
       versionsDevMode: newVal,
     });
   }
@@ -64,7 +73,7 @@ export default class Panel extends Component {
   handleVersionClick(e) {
     // We need to handle clicks dynamically so we get all the correct query strings
     const { currentVersion, hostname, localhost } = this.state;
-    const location = this.props.location;
+    const { location } = this.props;
     const version = e.target.value;
     const targetHost = version ? (hostname || `${location.hostname}:${location.port}`) : localhost;
     const target = generateLink(location, currentVersion, version, targetHost);
@@ -73,6 +82,7 @@ export default class Panel extends Component {
 
   render() {
     const { availableVersions, currentVersion, showLocalhost } = this.state;
+    const { active } = this.props;
     let versionsList = <p>No versions found</p>;
 
     if (availableVersions) {
@@ -86,36 +96,45 @@ export default class Panel extends Component {
         }
         return (
           <button
+            type="button"
             key={keyCounter++}
             onClick={this.handleVersionClick}
             className="light-bg with-border"
             value={version}
-          >{version}</button>
+          >
+            {version}
+          </button>
         );
       });
 
       if (showLocalhost) {
         versionsList.unshift(
           <button
+            type="button"
             key={keyCounter++}
             onClick={this.handleVersionClick}
             className="light-bg with-border"
-          >local dev</button>,
+          >
+            local dev
+          </button>,
         );
       }
     }
 
-    return (
+    return active ? (
       <div className="versions-panel-container">
-        <label htmlFor="versionsAddonDevMode"><input
-          type="checkbox"
-          id="versionsAddonDevMode"
-          checked={showLocalhost}
-          onChange={this.devModeChangeHandler}
-        /> Developer mode</label>
+        <label htmlFor="versionsAddonDevMode">
+          <input
+            type="checkbox"
+            id="versionsAddonDevMode"
+            checked={showLocalhost}
+            onChange={this.devModeChangeHandler}
+          />
+          Developer mode
+        </label>
         <div className="versions-panel-list">{versionsList}</div>
       </div>
-    );
+    ) : null;
   }
 }
 
@@ -123,4 +142,5 @@ Panel.propTypes = {
   // channel: PropTypes.object.isRequired,
   storybook: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
+  active: PropTypes.bool,
 };

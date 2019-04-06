@@ -8,34 +8,26 @@ const getConfig = (filename = 'storybook-config.json') => (
     } else if (window && window.parent) {
       lastFilename = filename;
       const url = window.parent.location;
-      const origin = `${url.protocol}//${url.hostname}:${url.port}`;
+      const location = `${url.protocol}//${url.hostname}:${url.port}/${filename}`;
 
-      const fetchConfig = pathParts => fetch(`${origin}/${pathParts.join('/')}${filename}`).then((response) => {
+      fetch(location).then((response) => {
         if (response.ok) {
           response.json().then((data) => {
             if (data && data.storybook && data.storybook.versions) {
               configFile = data.storybook.versions;
               resolve(configFile);
             } else {
-              reject('Invalid config');
+              reject(new Error('Invalid config'));
             }
           });
         } else {
-          reject('Response not ok');
+          reject(new Error('Response not ok'));
         }
       }).catch(() => {
-        if (pathParts.filter(_ => _).length === 0) {
-          throw new Error('Error getting config');
-        }
-
-        return fetchConfig(pathParts.slice(0, pathParts.length - 2).concat(['']));
-      });
-
-      fetchConfig(url.pathname.split('/').filter(_ => _).concat([''])).catch((e) => {
-        reject(e.message);
+        reject(new Error('Error getting config'));
       });
     } else {
-      reject('Window not found');
+      reject(new Error('Window not found'));
     }
   })
 );

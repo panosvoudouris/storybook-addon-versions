@@ -1,7 +1,10 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
-import { shallow } from 'enzyme';
-import Panel from '../';
+import Enzyme, { shallow, mount } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+
+import Panel from '..';
+
+Enzyme.configure({ adapter: new Adapter() });
 
 jest.mock('../../utils/config');
 
@@ -12,31 +15,27 @@ const location = {
 };
 
 describe('Panel', () => {
-  it('Panel renders correctly, no versions (dev true)', () => {
+  it('renders correctly, no versions (dev true)', () => {
     const storybook = {
       getQueryParam: () => 'true',
       setQueryParams: () => {},
     };
 
-    const tree = renderer
-      .create(<Panel storybook={storybook} location={location} />)
-      .toJSON();
+    const tree = mount(<Panel storybook={storybook} location={location} />);
     expect(tree).toMatchSnapshot();
   });
 
-  it('Panel renders correctly, no versions (dev false)', () => {
+  it('renders correctly, no versions (dev false)', () => {
     const storybook = {
       getQueryParam: () => 'false',
       setQueryParams: () => {},
     };
 
-    const tree = renderer
-      .create(<Panel storybook={storybook} location={location} />)
-      .toJSON();
+    const tree = mount(<Panel storybook={storybook} location={location} />);
     expect(tree).toMatchSnapshot();
   });
 
-  it('Panel renders versions (dev false)', async () => {
+  it('renders versions (dev false)', async () => {
     const storybook = {
       getQueryParam: () => 'false',
       setQueryParams: () => {},
@@ -46,7 +45,7 @@ describe('Panel', () => {
     expect(wrapper.render()).toMatchSnapshot();
   });
 
-  it('Panel renders versions (dev true)', async () => {
+  it('renders versions (dev true)', async () => {
     const storybook = {
       getQueryParam: () => 'true',
       setQueryParams: () => {},
@@ -56,7 +55,7 @@ describe('Panel', () => {
     expect(wrapper.render()).toMatchSnapshot();
   });
 
-  it('Toggles dev mode', async () => {
+  it('toggles dev mode', async () => {
     const storybook = {
       getQueryParam: () => 'true',
       setQueryParams: () => {},
