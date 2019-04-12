@@ -1,5 +1,5 @@
 {
-  "name": "addon-versions",
+  "name": "@arrow-ds/addon-versions",
   "version": "1.0.0",
   "description": "Navigate different versions of storybook style guides.",
   "main": "dist/register.js",
@@ -31,7 +31,6 @@
     "storybook-addon-versions",
     "versions"
   ],
-  "author": "Buildit",
   "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.4.3",

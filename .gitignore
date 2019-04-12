@@ -6,3 +6,4 @@ dist
 .vscode
 storybook-static
 reports
+yarn-error.log
