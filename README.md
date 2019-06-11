@@ -49,4 +49,4 @@ The config format is the same as for [blabbr](https://github.com/buildit/storybo
 
 ### Notes
 
-This is a fork of https://github.com/buildit/storybook-addon-versions It appears that repo is now defunct and no longer maintained so I've forked it to continue work on it.
+This is a fork of https://github.com/buildit/storybook-addon-versions It appears that repo is now defunct and no longer maintained so I've forked it to continue maintenance (eg upgrade for latest storybook etc) and upgrades.
