@@ -1,5 +1,5 @@
 {
-  "name": "@arrow-ds/addon-versions",
+  "name": "@panosvoudouris/addon-versions",
   "version": "1.0.0",
   "description": "Navigate different versions of storybook style guides.",
   "main": "dist/register.js",
