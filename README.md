@@ -47,3 +47,6 @@ work in a local dev build but *not* in your normal hosted config.
 
 The config format is the same as for [blabbr](https://github.com/buildit/storybook-addon-blabbr).
 
+### Notes
+
+This is a fork of https://github.com/buildit/storybook-addon-versions It appears that repo is now defunct and no longer maintained so I've forked it to continue work on it.
