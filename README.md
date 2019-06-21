@@ -49,8 +49,6 @@ work in a local dev build but *not* in your normal hosted config.
 - `localhost`: Where the local dev build is, when running in dev mode
 - `regex`: This is for a regular expression that will extract the version number for your URL. This is dependant on the way you store the static storybook builds. The example above will work for the format `http://localhost:port/<version>/` so for example, version `0.1.2` would be expected to be found like this `http://mystorybook/0.1.2/`.
 
-The config format is the same as for [blabbr](https://github.com/buildit/storybook-addon-blabbr).
-
 ### Notes
 
 This is a fork of https://github.com/buildit/storybook-addon-versions It appears that repo is now defunct and no longer maintained so I've forked it to continue maintenance (eg upgrade for latest storybook etc) and upgrades.
