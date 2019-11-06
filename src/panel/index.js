@@ -15,9 +15,12 @@ export default class Panel extends Component {
     };
 
     this.handleVersionClick = this.handleVersionClick.bind(this);
+    this.initConifg = this.initConifg.bind(this);
+
+    this.initConifg();
   }
 
-  componentWillMount() {
+  initConifg() {
     getConfig().then((data) => {
       const { location } = this.props;
       const {
@@ -36,7 +39,9 @@ export default class Panel extends Component {
       const url = location;
       let currentVersion = '';
       const path = url.pathname;
-      if (path && path !== '/' && regex) {
+
+
+      if (path && regex) {
         const r = new RegExp(regex, 'i');
         const result = r.exec(path);
         if (result && result.length > 0) {
