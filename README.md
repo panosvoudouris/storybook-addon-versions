@@ -25,7 +25,8 @@ The addon attempts to get a list of available style guide versions from the root
 1. Include the addon in your `addons.js`
     - `import '@panosvoudouris/addon-versions/register';`
 1. Create the Versions config at `.storybook/storybook-config.json`
-    - ```{
+    - ```
+      {
         "storybook": {
           "versions": {
             "availableVersions": [
