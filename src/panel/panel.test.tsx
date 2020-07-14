@@ -2,7 +2,7 @@ import React from 'react';
 import Enzyme, { shallow, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import Panel from '.';
+import Panel from './';
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -21,17 +21,12 @@ describe('Panel', () => {
       setQueryParams: () => {},
     };
 
-    const tree = mount(<Panel storybook={storybook} location={location} />);
+    const tree = mount(<Panel location={location} />);
     expect(tree).toMatchSnapshot();
   });
 
   it('renders versions', async () => {
-    const storybook = {
-      getQueryParam: () => 'false',
-      setQueryParams: () => {},
-    };
-
-    const wrapper = await shallow(<Panel storybook={storybook} location={location} />);
+    const wrapper = await shallow(<Panel location={location} />);
     expect(wrapper.render()).toMatchSnapshot();
   });
 });

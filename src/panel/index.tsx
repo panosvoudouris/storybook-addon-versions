@@ -4,7 +4,7 @@ import generateLink from '../utils/generateLink';
 
 export interface IPanelProps {
   location: any;
-  active: boolean;
+  active?: boolean;
 }
 
 const Panel = ({ location, active }: IPanelProps) => {

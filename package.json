@@ -45,6 +45,8 @@
     "@storybook/addons": "^5.3.19",
     "@storybook/preset-typescript": "^3.0.0",
     "@storybook/react": "^5.3.19",
+    "@types/enzyme": "^3.10.5",
+    "@types/enzyme-adapter-react-16": "^1.0.6",
     "@types/jest": "^26.0.4",
     "@types/prop-types": "^15.7.3",
     "@types/react": "^16.9.43",
@@ -84,14 +86,14 @@
   "jest": {
     "coverageDirectory": "reports",
     "collectCoverageFrom": [
-      "src/**/*.{js,jsx}",
-      "!src/register.js"
+      "src/**/*.{ts,tsx,js,jsx}",
+      "!src/register.tsx"
     ],
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
     ],
     "moduleNameMapper": {
-      "\\.css$": "<rootDir>/__mocks__/styleMock.js"
+      "\\.css$": "<rootDir>/__mocks__/styleMock.ts"
     }
   }
 }
