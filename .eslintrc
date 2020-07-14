@@ -8,6 +8,7 @@
     "es6": true
   },
   "rules": {
+    "comma-dangle": 0,
     "import/prefer-default-export": 0,
     "react/forbid-prop-types": 1,
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
