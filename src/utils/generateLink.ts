@@ -1,4 +1,9 @@
-const generateLink = (location, current, target, hostname) => {
+function generateLink(
+  location: Location,
+  current: string,
+  target: string,
+  hostname: string
+): string {
   if (location && hostname) {
     let path;
 
@@ -14,6 +19,6 @@ const generateLink = (location, current, target, hostname) => {
   }
 
   return '#';
-};
+}
 
 export default generateLink;

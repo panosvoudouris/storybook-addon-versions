@@ -7,3 +7,4 @@ dist
 storybook-static
 reports
 yarn-error.log
+dist-babel

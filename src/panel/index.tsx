@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import getConfig from '../utils/config';
 import generateLink from '../utils/generateLink';
 
-const Panel = ({ location, active }) => {
-  const [availableVersions, setAvailableVersions] = useState();
+export interface IPanelProps {
+  location: any;
+  active: boolean;
+}
+
+const Panel = ({ location, active }: IPanelProps) => {
+  const [availableVersions, setAvailableVersions] = useState([]);
   const [currentVersion, setCurrentVersion] = useState('');
   const [hostname, setHostName] = useState('');
   const [localhost, setLocalhost] = useState('');
 
   useEffect(() => {
     getConfig()
-      .then((data) => {
+      .then((data: any) => {
         const { availableVersions, regex, hostname, localhost } = data; // eslint-disable-line
 
         if (availableVersions) {
@@ -38,22 +42,27 @@ const Panel = ({ location, active }) => {
       });
   }, []);
 
-  const handleVersionClick = (e) => {
+  const handleVersionClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     // We need to handle clicks dynamically so we get all the correct query strings
-    const version = e.target.value;
+    const version = e.currentTarget.value;
     const targetHost = version
       ? hostname || `${location.hostname}:${location.port}`
       : localhost;
-    const target = generateLink(location, currentVersion, version, targetHost);
-    window.parent.location = target;
+    const target: string = generateLink(
+      location,
+      currentVersion,
+      version,
+      targetHost
+    );
+    window.parent.location.href = target;
   };
 
-  let versionsList = <p>No versions found</p>;
+  let versionsList: React.ReactNode = <p>No versions found</p>;
 
   if (availableVersions) {
     let keyCounter = 0;
 
-    versionsList = availableVersions.map((version) => {
+    versionsList = availableVersions.map((version: string) => {
       if (currentVersion === version) {
         return (
           <span className="dark-bg with-border" key={keyCounter++}>
@@ -80,12 +89,6 @@ const Panel = ({ location, active }) => {
       <div className="versions-panel-list">{versionsList}</div>
     </div>
   ) : null;
-};
-
-Panel.propTypes = {
-  // channel: PropTypes.object.isRequired,
-  location: PropTypes.object.isRequired,
-  active: PropTypes.bool,
 };
 
 export default Panel;
