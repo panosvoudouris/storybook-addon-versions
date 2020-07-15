@@ -1,6 +1,4 @@
 import React from 'react';
-import { action } from '@storybook/addon-actions';
-
 import Button from './Button';
 import Component from './Component';
 

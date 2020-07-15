@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import getConfig from '../utils/config';
 import generateLink from '../utils/generateLink';
+import { API } from '@storybook/api';
+import { Channel } from '@storybook/channels';
+import { AddonPanelProps } from '@storybook/components/dist/addon-panel/addon-panel';
 
-export interface IPanelProps {
+export interface IPanelProps extends AddonPanelProps {
   location: any;
-  active?: boolean;
+  channel: Channel;
+  storybook: API;
+  children: any;
+  key: string;
 }
 
 const Panel = ({ location, active }: IPanelProps): JSX.Element | null => {
@@ -83,8 +89,6 @@ const Panel = ({ location, active }: IPanelProps): JSX.Element | null => {
       );
     });
   }
-
-  console.log(active);
 
   return active ? (
     <div className="versions-panel-container">
