@@ -3,11 +3,11 @@ import getConfig from '../utils/config';
 import generateLink from '../utils/generateLink';
 
 export interface IPanelProps {
-  location: ILocation;
+  location: any;
   active?: boolean;
 }
 
-const Panel = ({ location, active }: IPanelProps): JSX.Element => {
+const Panel = ({ location, active }: IPanelProps): JSX.Element | null => {
   const [availableVersions, setAvailableVersions] = useState([]);
   const [currentVersion, setCurrentVersion] = useState('');
   const [hostname, setHostName] = useState('');

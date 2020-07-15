@@ -1,5 +1,5 @@
-let configFile: string = null;
-let lastFilename: string = null;
+let configFile: string | null = null;
+let lastFilename: string | null = null;
 
 const getConfig = (filename = 'storybook-config.json'): Promise<any> =>
   new Promise((resolve, reject) => {

@@ -1,1 +1,1 @@
-require('./dist-babel/register');
+require('./dist/register');

@@ -15,6 +15,7 @@ interface IRenderProps {
 }
 
 addons.register('versions', () => {
+  console.log('REGISTERING');
   const render = ({ active, key }: IRenderProps) => (
     <AddonPanel active={active} key={key}>
       <Panel location={window.parent.location} active={active} />
