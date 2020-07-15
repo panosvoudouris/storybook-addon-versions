@@ -9,13 +9,3 @@ exports[`Panel renders correctly, no versions 1`] = `
   />
 </div>
 `;
-
-exports[`Panel renders versions 1`] = `
-<div
-  className="versions-panel-container"
->
-  <div
-    className="versions-panel-list"
-  />
-</div>
-`;

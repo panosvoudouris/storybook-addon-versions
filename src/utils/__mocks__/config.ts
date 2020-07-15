@@ -1,6 +1,6 @@
 const configFile = require('../../../.storybook/storybook-config.json'); // eslint-disable-line
 
-const getConfig = () =>
+const getConfig = (): Promise<any> =>
   new Promise((resolve) => {
     resolve(configFile.storybook.versions);
   });

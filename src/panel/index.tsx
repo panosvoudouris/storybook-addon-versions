@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import getConfig from '../utils/config';
 import generateLink from '../utils/generateLink';
 
 export interface IPanelProps {
-  location: any;
+  location: ILocation;
   active?: boolean;
 }
 

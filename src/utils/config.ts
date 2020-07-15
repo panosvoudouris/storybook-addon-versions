@@ -1,7 +1,7 @@
 let configFile: string = null;
 let lastFilename: string = null;
 
-const getConfig = (filename = 'storybook-config.json') =>
+const getConfig = (filename = 'storybook-config.json'): Promise<any> =>
   new Promise((resolve, reject) => {
     if (lastFilename === filename && configFile) {
       resolve(configFile);

@@ -6,5 +6,5 @@ export default {
   title: 'Example components',
 };
 
-export const aButton = () => <Button />;
-export const aComponent = () => <Component />;
+export const aButton = (): JSX.Element => <Button />;
+export const aComponent = (): JSX.Element => <Component />;
