@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import getConfig from '../utils/config';
 import generateLink from '../utils/generateLink';
 
@@ -7,7 +8,7 @@ export interface IPanelProps {
   active?: boolean;
 }
 
-const Panel = ({ location, active }: IPanelProps) => {
+const Panel = ({ location, active }: IPanelProps): JSX.Element => {
   const [availableVersions, setAvailableVersions] = useState([]);
   const [currentVersion, setCurrentVersion] = useState('');
   const [hostname, setHostName] = useState('');
@@ -83,6 +84,8 @@ const Panel = ({ location, active }: IPanelProps) => {
       );
     });
   }
+
+  console.log(active);
 
   return active ? (
     <div className="versions-panel-container">

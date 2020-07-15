@@ -1,11 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Button = ({ label, onClick }) => (
-  <button onClick={onClick}>
-    {label}
-  </button>
-);
+const Button = (): JSX.Element => <button>A button</button>;
 
 Button.displayName = 'Button';
 Button.propTypes = {
