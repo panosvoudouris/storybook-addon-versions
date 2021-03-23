@@ -29,7 +29,8 @@
     "storybook",
     "storybook-addon",
     "storybook-addon-versions",
-    "versions"
+    "versions",
+    "organize"
   ],
   "license": "MIT",
   "devDependencies": {
